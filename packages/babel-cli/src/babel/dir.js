@@ -162,6 +162,11 @@ export default function(commander, filenames, opts) {
           }
         });
       });
+
+      watcher.on("unlink", function(filename) {
+        const dest = getDest(commander, filename);
+        fs.unlink(dest);
+      });
     });
   }
 }
